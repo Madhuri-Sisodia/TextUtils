@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Text Analyzer</title>
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        animation: fadeIn 0.8s ease;
+        margin: auto;
+        margin-top: 80px;
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 25px;
+        font-size: 2rem;
+      }
+
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 15px;
+        font-size: 1rem;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        resize: none;
+        margin-bottom: 20px;
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+
+      textarea:focus {
+        border-color: #007bff;
+      }
+
+      .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        font-size: 0.95rem;
+        color: #333;
+      }
+
+      .checkbox-group input[type="checkbox"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+      }
+
+      .checkbox-group label {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 12px 30px;
+        font-size: 1rem;
+        background: linear-gradient(to right, #007bff, #00c6ff);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      footer {
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: auto;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand" href="#">TextUtils.in</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="card">
+      <h1>Welcome to the text Analyser</h1>
+      <form action="/analyser/" method="post">
+        {% csrf_token %}
+        <textarea
+          placeholder="Type or paste your text here..."
+          name="text"
+        ></textarea>
+        <div class="checkbox-group">
+          <div>
+            <input type="checkbox" id="punctuation" name="punctuation" />
+            <label for="punctuation">Remove Punctuation</label>
+          </div>
+          <div>
+            <input type="checkbox" id="uppercase" name="uppercase" />
+            <label for="uppercase">UPPERCASE</label>
+          </div>
+          <div>
+            <input type="checkbox" id="newlineremover" name="newlineremover" />
+            <label for="newlineremover">New Line Remover</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="extraspaceremover"
+              name="extraspaceremover"
+            />
+            <label for="extraspaceremover">Remove Extra Spaces</label>
+          </div>
+        </div>
+        <button type="submit">Analyze Text</button>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p class="mb-0">© 2025 TextUtils.in | Built with ❤️ by Madhuri</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
